@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="{% if page.language == nil %}en{% else %}{{ page.language }}{% endif %}">
+<head>
+  <!-- adsense 계정 -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    {{ page.title }}
+    {% if page.category == 'blog' and page.url != '/blog/index.html' %}
+    {% endif %}
+  </title>
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="canonical" href="http://mysqlguru.github.io{{ page.url }}" />
+  {% if page.description %}<meta name="description" content="{{page.description}}" />{% endif %}
+<!--   {% if page.url == '/index.html' %}
+    <link rel="alternate" hreflang="fr" href="/fr/" />
+  {% elsif page.url == '/fr/index.html' %}
+    <link rel="alternate" hreflang="en" href="/" />
+  {% endif %} -->
+
+  {{ page.extra_head }}
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D65BTQ19GW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-D65BTQ19GW');
+</script>
+
+<!-- 네이버 웹마스터 도구 -->
+
+</head>
+<body>
+  <div class="top-bar"></div>
+
+  <div class="container">
+    <div class="site">
+      <header>
+        <nav>
+          <a class="{% if page.category == '/' %} selected {% endif %}" href="/">홈</a>
+          <a class="{% if page.category == 'archive' %} selected {% endif %}" href="/all_posts.html">All Posts</a>
+        </nav>
+
+
+        <div class="pull-right right logo">
+          <div class="name">
+            <a href="/">Home</a><br />
+            <small>
+              <em>
+              부동산, 금융 전문 블로그
+              </em>
+            </small>
+          </div>
+        </div>
+      </header>
+      <div class="separator"></div>
+      {{ content }}
+      <div class="separator"></div>
+    </div>
+  </div>
+
+  <div class="clear"></div>
+
+  <footer>
+    {% include footer.md %}
+  </footer>
+
+  <!-- tag, category search -->
+</body>
+</html>
